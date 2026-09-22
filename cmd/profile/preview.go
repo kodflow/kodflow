@@ -7,7 +7,7 @@ import (
 
 // renderPreview writes a local page that shows the profile in both themes,
 // framed roughly like GitHub, so a change can be judged before it is pushed.
-func renderPreview(p *Profile) string {
+func renderPreview(p *Profile, withProof bool) string {
 	var b strings.Builder
 	b.WriteString(`<!doctype html><meta charset="utf-8"><title>Profile preview</title>
 <style>
@@ -26,6 +26,9 @@ a{color:#4493f8;font-weight:600;text-decoration:none}.light a{color:#0969da}h3{m
 		}
 		img("header", "kodflow")
 		img("card", "At a glance")
+		if withProof {
+			img("proof", "By the numbers")
+		}
 		if len(p.Projects) > 0 {
 			b.WriteString(`<h3>Selected work</h3><table><tr><th>Project</th><th>What it does</th></tr>`)
 			for _, pr := range p.Projects {

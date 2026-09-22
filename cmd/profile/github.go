@@ -17,6 +17,7 @@ type Stats struct {
 	Stars         int
 	Contributions int // last 12 months; -1 when no token allows the GraphQL call
 	Languages     []LangShare
+	RepoNames     []string // own repositories, forks excluded
 }
 
 // LangShare is one language's share of the bytes in the owner's own repos.
@@ -93,6 +94,7 @@ func (g *github) fetchStats(ctx context.Context, login string) (*Stats, error) {
 		}
 		s.Repos++
 		s.Stars += r.Stars
+		s.RepoNames = append(s.RepoNames, r.Name)
 		var langs map[string]int
 		if err := g.do(ctx, http.MethodGet, fmt.Sprintf("%s/repos/%s/%s/languages", apiBase, login, r.Name), nil, &langs); err != nil {
 			return nil, err

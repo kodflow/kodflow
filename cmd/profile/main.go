@@ -26,6 +26,7 @@ func run() error {
 	base := flag.String("base", "", "URL or path the README uses for the SVGs (default: the repo's output branch)")
 	offline := flag.Bool("offline", false, "skip the GitHub API; live numbers show a dash")
 	preview := flag.Bool("preview", false, "also write <out>/preview.html, both themes side by side")
+	proof := flag.Bool("proof", true, "clone the public repos and render the by-the-numbers card")
 	flag.Parse()
 
 	p, err := loadProfile(*profilePath)
@@ -48,6 +49,15 @@ func run() error {
 		}
 	}
 
+	var pr *Proof
+	if stats != nil && *proof {
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+		defer cancel()
+		if pr, err = measureRepos(ctx, p.Login, stats.RepoNames); err != nil {
+			return fmt.Errorf("proof: %w", err)
+		}
+	}
+
 	if err := os.MkdirAll(*out, 0o755); err != nil {
 		return fmt.Errorf("create %s: %w", *out, err)
 	}
@@ -57,6 +67,9 @@ func run() error {
 			"header":   renderHeader(p, t),
 			"card":     renderCard(p, stats, t, now),
 			"timeline": renderTimeline(p, t),
+		}
+		if pr != nil {
+			files["proof"] = renderProof(pr, t)
 		}
 		for name, svg := range files {
 			if err := writeFile(filepath.Join(*out, name+"-"+t.Name+".svg"), svg); err != nil {
@@ -70,12 +83,12 @@ func run() error {
 		if b == "" {
 			b = fmt.Sprintf("https://raw.githubusercontent.com/%s/%s/output", p.Login, p.Login)
 		}
-		if err := writeFile(*readme, renderREADME(p, b)); err != nil {
+		if err := writeFile(*readme, renderREADME(p, b, *proof)); err != nil {
 			return err
 		}
 	}
 	if *preview {
-		if err := writeFile(filepath.Join(*out, "preview.html"), renderPreview(p)); err != nil {
+		if err := writeFile(filepath.Join(*out, "preview.html"), renderPreview(p, pr != nil)); err != nil {
 			return err
 		}
 	}

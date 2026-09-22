@@ -13,6 +13,12 @@
 </picture>
 
 <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/proof-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/proof-light.svg">
+  <img alt="By the numbers" src="https://raw.githubusercontent.com/kodflow/kodflow/output/proof-dark.svg" width="100%">
+</picture>
+
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/timeline-light.svg">
   <img alt="Stack over time" src="https://raw.githubusercontent.com/kodflow/kodflow/output/timeline-dark.svg" width="100%">

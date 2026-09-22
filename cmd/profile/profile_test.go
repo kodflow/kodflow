@@ -36,6 +36,7 @@ func TestSVGsAreWellFormed(t *testing.T) {
 			"card":         renderCard(p, sampleStats(), th, now),
 			"card-offline": renderCard(p, nil, th, now),
 			"timeline":     renderTimeline(p, th),
+			"proof":        renderProof(sampleProof(), th),
 		} {
 			d := xml.NewDecoder(strings.NewReader(svg))
 			for {
@@ -64,7 +65,7 @@ func TestValidateRejectsWrongLevelCount(t *testing.T) {
 
 func TestREADMEListsEveryProject(t *testing.T) {
 	p := testProfile(t)
-	r := renderREADME(p, "https://example.test")
+	r := renderREADME(p, "https://example.test", true)
 	for _, pr := range p.Projects {
 		if !strings.Contains(r, "/"+p.Login+"/"+pr.Repo+")") {
 			t.Errorf("README misses %s", pr.Repo)
@@ -75,10 +76,10 @@ func TestREADMEListsEveryProject(t *testing.T) {
 func TestREADMEOmitsEmptyProjectSection(t *testing.T) {
 	p := testProfile(t)
 	p.Projects = nil
-	if r := renderREADME(p, ""); strings.Contains(r, "Selected work") {
+	if r := renderREADME(p, "", false); strings.Contains(r, "Selected work") {
 		t.Fatal("README shows a project heading with no project")
 	}
-	if r := renderPreview(p); strings.Contains(r, "Selected work") {
+	if r := renderPreview(p, false); strings.Contains(r, "Selected work") {
 		t.Fatal("preview shows a project heading with no project")
 	}
 }
@@ -143,7 +144,7 @@ func TestNothingIdentifying(t *testing.T) {
 	}
 	now := time.Now()
 	public := strings.ToLower(strings.Join([]string{
-		string(raw), renderREADME(p, ""), renderPreview(p),
+		string(raw), renderREADME(p, "", true), renderPreview(p, true), renderProof(sampleProof(), themes[0]),
 		renderHeader(p, themes[0]), renderCard(p, sampleStats(), themes[0], now), renderTimeline(p, themes[0]),
 	}, "\n"))
 	for _, term := range terms {
