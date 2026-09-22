@@ -1,0 +1,291 @@
+{
+  "login": "kodflow",
+  "tagline": "platform engineering · distributed systems · Go",
+  "role": "Platform engineer & Go developer",
+  "since_year": 2010,
+  "focus": [
+    "high-availability backends",
+    "infrastructure as code",
+    "developer tooling & AI agents"
+  ],
+  "stack": {
+    "languages": [
+      "Go",
+      "Shell",
+      "TypeScript",
+      "Dart",
+      "Rust"
+    ],
+    "infrastructure": [
+      "Linux",
+      "Kubernetes",
+      "Nomad",
+      "Terraform",
+      "AWS"
+    ],
+    "data": [
+      "PostgreSQL",
+      "Redis",
+      "gRPC",
+      "Kafka"
+    ]
+  },
+  "eras": [
+    "2010–13",
+    "2014–17",
+    "2018–21",
+    "2022–now"
+  ],
+  "timeline": [
+    {
+      "family": "languages",
+      "name": "Go",
+      "levels": [
+        0,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "Shell",
+      "levels": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "JavaScript / TypeScript",
+      "levels": [
+        2,
+        3,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "PHP",
+      "levels": [
+        3,
+        3,
+        1,
+        0
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "Dart / Flutter",
+      "levels": [
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "C / C++",
+      "levels": [
+        3,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "Python",
+      "levels": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "family": "languages",
+      "name": "Rust",
+      "levels": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Linux",
+      "levels": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Docker",
+      "levels": [
+        0,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Kubernetes",
+      "levels": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Nomad · Consul · Vault",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Terraform · Ansible",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "AWS",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "CI/CD",
+      "levels": [
+        0,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "family": "infrastructure",
+      "name": "Observability",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "data",
+      "name": "PostgreSQL",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "data",
+      "name": "MySQL",
+      "levels": [
+        3,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "family": "data",
+      "name": "Redis / Valkey",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "data",
+      "name": "gRPC · Protobuf",
+      "levels": [
+        0,
+        2,
+        3,
+        2
+      ]
+    },
+    {
+      "family": "data",
+      "name": "Kafka",
+      "levels": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "family": "data",
+      "name": "LLM · RAG · MCP",
+      "levels": [
+        0,
+        0,
+        0,
+        2
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "repo": "claude-marketplace",
+      "what": "Opinionated Claude Code & Codex setup: a work loop that leaves a trail, evidence-bound review, specialists that check the docs before they assert."
+    },
+    {
+      "repo": "terraform-provider-n8n",
+      "what": "Terraform provider that turns n8n workflows into reviewable, versioned code."
+    },
+    {
+      "repo": "ktn",
+      "what": "Distribution channel of ktn-linter, a strict Go linter: universal installer and prebuilt binaries."
+    },
+    {
+      "repo": "devcontainer-template",
+      "what": "Universal devcontainer shell that bootstraps any project with the full agent toolchain."
+    },
+    {
+      "repo": "infrastructure-template",
+      "what": "Multi-cloud infrastructure baseline: Terraform, Ansible, Terragrunt, HashiCorp management plane."
+    },
+    {
+      "repo": "post-commit",
+      "what": "Server-side merge gate defined once and pinned everywhere: blocks leaked credentials and forbidden trailers."
+    },
+    {
+      "repo": "status-line",
+      "what": "Status line for Claude Code: model, context window, quotas, git state."
+    }
+  ]
+}

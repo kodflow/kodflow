@@ -1,0 +1,58 @@
+# Renders the profile SVGs every day and force-pushes them to the orphan
+# `output` branch, which the README points at. main only changes by hand.
+name: render
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["profile.json", "cmd/**", "go.mod", ".github/workflows/render.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: render
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: Test
+        run: go vet ./... && go test ./...
+
+      - name: Render
+        run: go run ./cmd/profile -out dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # One orphan commit, force-pushed: the branch holds today's images and
+      # nothing else, so a daily run never grows the repository history.
+      # Authored by the Actions bot, not Kodflow: a commit every day would
+      # fill the contribution graph with a fake, recognisable pattern.
+      - name: Publish to the output branch
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TZ: UTC
+        run: |
+          cd dist
+          git init -q -b output
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "chore: render profile assets"
+          git push -q --force "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output

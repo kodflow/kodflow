@@ -1,0 +1,20 @@
+#!/bin/sh
+# Refuse to push a commit that could identify its author: anything but the
+# Kodflow noreply identity, or a date carrying a local UTC offset (a +0200
+# says "central Europe" to anyone who opens the .patch view).
+ok_email="133899878+kodflow@users.noreply.github.com"
+zero=0000000000000000000000000000000000000000
+status=0
+while read -r _ local_sha _ remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue
+  if [ "$remote_sha" = "$zero" ]; then range="$local_sha"; else range="$remote_sha..$local_sha"; fi
+  bad=$(git log --format='%h %an <%ae> %ad | %cn <%ce> %cd' --date=format:%z "$range" |
+    grep -v "Kodflow <$ok_email> +0000 | Kodflow <$ok_email> +0000$")
+  if [ -n "$bad" ]; then
+    echo "pre-push: commits non anonymes (identité ou fuseau) :" >&2
+    echo "$bad" >&2
+    echo "Refaire avec : make commit m=\"...\"" >&2
+    status=1
+  fi
+done
+exit $status
