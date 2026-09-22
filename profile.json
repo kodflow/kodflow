@@ -258,34 +258,5 @@
       ]
     }
   ],
-  "projects": [
-    {
-      "repo": "claude-marketplace",
-      "what": "Opinionated Claude Code & Codex setup: a work loop that leaves a trail, evidence-bound review, specialists that check the docs before they assert."
-    },
-    {
-      "repo": "terraform-provider-n8n",
-      "what": "Terraform provider that turns n8n workflows into reviewable, versioned code."
-    },
-    {
-      "repo": "ktn",
-      "what": "Distribution channel of ktn-linter, a strict Go linter: universal installer and prebuilt binaries."
-    },
-    {
-      "repo": "devcontainer-template",
-      "what": "Universal devcontainer shell that bootstraps any project with the full agent toolchain."
-    },
-    {
-      "repo": "infrastructure-template",
-      "what": "Multi-cloud infrastructure baseline: Terraform, Ansible, Terragrunt, HashiCorp management plane."
-    },
-    {
-      "repo": "post-commit",
-      "what": "Server-side merge gate defined once and pinned everywhere: blocks leaked credentials and forbidden trailers."
-    },
-    {
-      "repo": "status-line",
-      "what": "Status line for Claude Code: model, context window, quotas, git state."
-    }
-  ]
+  "projects": []
 }

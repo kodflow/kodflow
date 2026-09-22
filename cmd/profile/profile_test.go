@@ -72,6 +72,17 @@ func TestREADMEListsEveryProject(t *testing.T) {
 	}
 }
 
+func TestREADMEOmitsEmptyProjectSection(t *testing.T) {
+	p := testProfile(t)
+	p.Projects = nil
+	if r := renderREADME(p, ""); strings.Contains(r, "Selected work") {
+		t.Fatal("README shows a project heading with no project")
+	}
+	if r := renderPreview(p); strings.Contains(r, "Selected work") {
+		t.Fatal("preview shows a project heading with no project")
+	}
+}
+
 func TestUptimeRoundsDownToFiveYears(t *testing.T) {
 	now := time.Date(2026, 9, 22, 0, 0, 0, 0, time.UTC)
 	if got := uptime(2010, now); got != "15+ years in production" {

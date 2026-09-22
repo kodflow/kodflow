@@ -12,18 +12,6 @@
   <img alt="At a glance" src="https://raw.githubusercontent.com/kodflow/kodflow/output/card-dark.svg" width="100%">
 </picture>
 
-### Selected work
-
-| Project | What it does |
-|---|---|
-| [**claude-marketplace**](https://github.com/kodflow/claude-marketplace) | Opinionated Claude Code & Codex setup: a work loop that leaves a trail, evidence-bound review, specialists that check the docs before they assert. |
-| [**terraform-provider-n8n**](https://github.com/kodflow/terraform-provider-n8n) | Terraform provider that turns n8n workflows into reviewable, versioned code. |
-| [**ktn**](https://github.com/kodflow/ktn) | Distribution channel of ktn-linter, a strict Go linter: universal installer and prebuilt binaries. |
-| [**devcontainer-template**](https://github.com/kodflow/devcontainer-template) | Universal devcontainer shell that bootstraps any project with the full agent toolchain. |
-| [**infrastructure-template**](https://github.com/kodflow/infrastructure-template) | Multi-cloud infrastructure baseline: Terraform, Ansible, Terragrunt, HashiCorp management plane. |
-| [**post-commit**](https://github.com/kodflow/post-commit) | Server-side merge gate defined once and pinned everywhere: blocks leaked credentials and forbidden trailers. |
-| [**status-line**](https://github.com/kodflow/status-line) | Status line for Claude Code: model, context window, quotas, git state. |
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kodflow/kodflow/output/timeline-light.svg">

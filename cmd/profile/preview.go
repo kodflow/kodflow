@@ -26,11 +26,13 @@ a{color:#4493f8;font-weight:600;text-decoration:none}.light a{color:#0969da}h3{m
 		}
 		img("header", "kodflow")
 		img("card", "At a glance")
-		b.WriteString(`<h3>Selected work</h3><table><tr><th>Project</th><th>What it does</th></tr>`)
-		for _, pr := range p.Projects {
-			fmt.Fprintf(&b, `<tr><td><a href="https://github.com/%s/%s">%s</a></td><td>%s</td></tr>`, p.Login, pr.Repo, esc(pr.Repo), esc(pr.What))
+		if len(p.Projects) > 0 {
+			b.WriteString(`<h3>Selected work</h3><table><tr><th>Project</th><th>What it does</th></tr>`)
+			for _, pr := range p.Projects {
+				fmt.Fprintf(&b, `<tr><td><a href="https://github.com/%s/%s">%s</a></td><td>%s</td></tr>`, p.Login, pr.Repo, esc(pr.Repo), esc(pr.What))
+			}
+			b.WriteString(`</table>`)
 		}
-		b.WriteString(`</table>`)
 		img("timeline", "Stack over time")
 		b.WriteString(`<sub>Rendered every day by a small Go program in this repository, from the public GitHub API only. No third-party stat service, no tracking pixel.</sub></div></section>`)
 	}
